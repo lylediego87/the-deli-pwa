@@ -5,7 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  height: 80vh;
+  height: 74vh;
 `;
 
 export const ImageDiv = styled.div`

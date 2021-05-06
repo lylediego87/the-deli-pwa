@@ -5,7 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 20px 60px;
-  height: 80vh;
+  height: 74vh;
 `;
 
 export const GoogleButton = styled.button`
