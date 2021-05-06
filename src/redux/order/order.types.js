@@ -1,0 +1,7 @@
+const orderActionTypes = {
+  PLACE_ORDER_START: "PLACE_ORDER_START",
+  PLACE_ORDER_SUCCESS: "PLACE_ORDER_SUCCESS",
+  PLACE_ORDER_FAILURE:  "PLACE_ORDER_FAILURE"
+}
+
+export default orderActionTypes;
