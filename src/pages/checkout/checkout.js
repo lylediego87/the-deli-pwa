@@ -23,7 +23,9 @@ const Checkout = ({cartItems,totalCost,totalItems, user, placeOrder}) => {
       address: data.address === undefined ? "" : data.address ,
       phoneNo: data.phone  === undefined ? "" : data.phone,
       deliveryMethod: data.deliveryMethod,
-      paymentMethod: data.paymentMethod
+      paymentMethod: data.paymentMethod,
+      status: "open",
+      date: Date.now
     }
     placeOrder(order);
   }
