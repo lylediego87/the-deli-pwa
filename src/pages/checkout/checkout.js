@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useForm } from "react-hook-form";
+import moment from 'moment';
 
 import { Container, InfoBlock, RadioBlock, RadioGroup, ErrorMsg } from './checkout.styles';
 import { selectCartTotal, selectCartItemsCount, selectCartItems } from '../../redux/cart/cart.selectors';
@@ -25,7 +26,7 @@ const Checkout = ({cartItems,totalCost,totalItems, user, placeOrder}) => {
       deliveryMethod: data.deliveryMethod,
       paymentMethod: data.paymentMethod,
       status: "open",
-      date: Date.now
+      timestamp: moment()._d
     }
     placeOrder(order);
   }
