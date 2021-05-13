@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import styled,{ createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
 
@@ -14,4 +14,10 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'New Tegomin', serif;
     background-color: #dfe4ea;
   }
+`;
+
+export const AppContainer = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 `;

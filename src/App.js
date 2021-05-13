@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 
-import { GlobalStyles } from './global.styles';
+import { GlobalStyles,AppContainer } from './global.styles';
 import Header from './components/header/header';
 import FooterNav from './components/footer-navigation/footer.navigation';
 import HomePage from './pages/home/home';
@@ -22,7 +22,7 @@ const App = ({checkSession,currentUser, fetchFoodItems}) => {
   }, [checkSession,fetchFoodItems])
 
   return (
-    <div>
+    <AppContainer>
       <GlobalStyles />
       <Header />
       <Switch>
@@ -34,7 +34,7 @@ const App = ({checkSession,currentUser, fetchFoodItems}) => {
         <Route exact path='/sign-in' render={() => currentUser ? <Redirect to='/'/> : <SignIn/> } />
       </Switch>
       <FooterNav />
-    </div>
+    </AppContainer>
   );
 }
 

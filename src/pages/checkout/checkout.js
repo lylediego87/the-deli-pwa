@@ -44,6 +44,15 @@ const Checkout = ({cartItems,totalCost,totalItems, user, placeOrder}) => {
           <h5>{user.email}</h5>
         </InfoBlock>
         <InfoBlock>
+          <strong>Phone No</strong>
+          <input type="text" id="phone" name="phone" 
+            {...register("phone", {required: true, pattern: /^[0-9\s]{10}$/})} />
+        </InfoBlock> 
+        <ErrorMsg>
+          {errors.phone && errors.phone.type === 'required' && "Phone No is required"}
+          {errors.phone && errors.phone.type === 'pattern' && "Example 0793097768"}
+        </ErrorMsg>
+        <InfoBlock>
           <strong>Number of Items</strong>
           <h5>{totalItems}</h5>
         </InfoBlock>
@@ -80,16 +89,7 @@ const Checkout = ({cartItems,totalCost,totalItems, user, placeOrder}) => {
             </InfoBlock>
             <ErrorMsg>
               {errors.address && errors.address.type === 'required' && "Address is required"}
-            </ErrorMsg>
-            <InfoBlock>
-              <strong>Phone No</strong>
-              <input type="text" id="phone" name="phone" 
-                {...register("phone", {required: delivery, pattern: /^[0-9\s]{12}$/ })} />
-            </InfoBlock> 
-            <ErrorMsg>
-              {errors.phone && errors.phone.type === 'required' && "Phone No is required"}
-              {errors.phone && errors.phone.type === 'pattern' && "Example 079 309 7768"}
-            </ErrorMsg>
+            </ErrorMsg>            
           </div> : null} 
 
         <InfoBlock>
