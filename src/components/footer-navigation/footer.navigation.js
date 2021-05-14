@@ -1,11 +1,8 @@
 import React from 'react';
+import { useLocation } from "react-router-dom";
 import { withRouter } from 'react-router';
 
-import { BiFoodMenu } from 'react-icons/bi';
-import { GiShoppingCart} from 'react-icons/gi';
-import { FaRegCheckCircle } from 'react-icons/fa';
-
-import {Container, NavItem } from './footer.styles';
+import {Container, NavItem, GiShoppingCartStyled, FaRegCheckCircleStyled, BiFoodMenuStyled } from './footer.styles';
 
 const FooterNav = ({history})  => {
   
@@ -15,20 +12,20 @@ const FooterNav = ({history})  => {
 
   return(
     <Container>
-      <NavItem onClick={() => goToPage('/')}>      
-        <BiFoodMenu size={30} />
+      <NavItem onClick={() => goToPage('/')} >      
+        <BiFoodMenuStyled size={30} location={useLocation().pathname} />
         <h4>Menu</h4>
       </NavItem>
       <NavItem onClick={() => goToPage('/cart')}>      
-        <GiShoppingCart size={30} />
+        <GiShoppingCartStyled size={30} location={useLocation().pathname} />
         <h4>Basket</h4>
       </NavItem>
-      <NavItem onClick={() => goToPage('/checkout')}>        
-        <FaRegCheckCircle size={30} />
+      <NavItem onClick={() => goToPage('/checkout')} >        
+        <FaRegCheckCircleStyled size={30} location={useLocation().pathname} />
         <h4>Order</h4>
       </NavItem>
     </Container>
   )
 }
 
-export default withRouter(FooterNav);
+export default withRouter(FooterNav); 

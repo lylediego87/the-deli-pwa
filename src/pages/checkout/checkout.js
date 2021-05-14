@@ -7,12 +7,13 @@ import { Container, InfoBlock, RadioBlock, RadioGroup, ErrorMsg } from './checko
 import { selectCartTotal, selectCartItemsCount, selectCartItems } from '../../redux/cart/cart.selectors';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { placeOrderStart } from '../../redux/order/order.actions';
+import Button from '../../components/custom-button/custom-button.component';
 
 const Checkout = ({cartItems,totalCost,totalItems, user, placeOrder}) => {
+  
+  const { register, formState: { errors }, handleSubmit, watch, unregister } = useForm();
 
-  const { register, formState: { errors }, handleSubmit } = useForm();
-
-  const [ delivery, setDelivery ] = useState(false);
+  const deliveryMethod = watch("deliveryMethod");
 
   const onSubmit = data => {
     const order = {
@@ -26,13 +27,14 @@ const Checkout = ({cartItems,totalCost,totalItems, user, placeOrder}) => {
       deliveryMethod: data.deliveryMethod,
       paymentMethod: data.paymentMethod,
       status: "open",
-      timestamp: moment()._d
+      timestamp: moment().toDate()
     }
     placeOrder(order);
   }
 
   return(
     <Container>
+    {totalItems > 0 ? 
       <form onSubmit={handleSubmit(onSubmit)}>
         <h3>Checkout</h3>
         <InfoBlock>
@@ -66,12 +68,12 @@ const Checkout = ({cartItems,totalCost,totalItems, user, placeOrder}) => {
           <RadioGroup>
             <RadioBlock>
               <input type="radio" id="pickup" name="pickup" {...register("deliveryMethod", {required: true})} 
-                value="pickup" onClick={() => setDelivery(false)} />
+                value="pickup" onClick={() => unregister("address")} />
               <h5>Pickup</h5>
             </RadioBlock>                
             <RadioBlock>
               <input type="radio" id="deliver" name="delivery" {...register("deliveryMethod", {required: true})}  
-                value="delivery" onClick={() => setDelivery(true)} />
+                value="delivery" />
               <h5>Delivery</h5>
             </RadioBlock>                   
           </RadioGroup>
@@ -80,12 +82,12 @@ const Checkout = ({cartItems,totalCost,totalItems, user, placeOrder}) => {
           {errors.deliveryMethod && errors.deliveryMethod.type === 'required' && "Please select delivery method"}
         </ErrorMsg>
 
-        {delivery ? 
+        {deliveryMethod === "delivery" ? 
           <div>
             <InfoBlock>
              <strong>Address</strong>
              <input type="text" id="address" name="address" 
-              {...register("address", {required: delivery })}  />
+              {...register("address", {required: true })}  />
             </InfoBlock>
             <ErrorMsg>
               {errors.address && errors.address.type === 'required' && "Address is required"}
@@ -110,8 +112,9 @@ const Checkout = ({cartItems,totalCost,totalItems, user, placeOrder}) => {
         <ErrorMsg>
           {errors.paymentMethod && errors.paymentMethod.type === 'required' && "Please select payment method"}
         </ErrorMsg>
-        <button type="submit">Place Order</button>
+        <Button type="submit">Place Order</Button>
       </form>
+    : <h3>Your Cart is Empty</h3>}
     </Container>
   )
 }

@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { FaPlus } from 'react-icons/fa';
-
-import { Container, TopDiv, TopDivText, BottomDiv } from './menu-item.styles';
+import { Container, TopDiv, TopDivText, BottomDiv, FaPlusStyled } from './menu-item.styles';
 import { addItemToCart } from '../../redux/cart/cart.actions';
 
 const MenuItem = (props) => {
@@ -16,7 +14,7 @@ const MenuItem = (props) => {
   <Container>
     <TopDiv>
       <TopDivText style={{flexGrow: '1'}}>{name} - {price}</TopDivText>
-      <TopDivText style={{flexGrow: '0'}}><FaPlus onClick={ () => addToCart() } /></TopDivText>
+      <TopDivText style={{flexGrow: '0'}}><FaPlusStyled onClick={ () => addToCart() } /></TopDivText>
     </TopDiv>
     <BottomDiv>{description}</BottomDiv>
   </Container>

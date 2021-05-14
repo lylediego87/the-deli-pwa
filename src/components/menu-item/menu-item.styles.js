@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FaPlus } from 'react-icons/fa';
 
 export const Container = styled.div`
   display: flex;
@@ -22,5 +23,9 @@ export const TopDivText = styled.div`
   flex-grow: 2;
   color: #fff;
   font-size: 1.3rem;
+`;
+
+export const FaPlusStyled = styled(FaPlus)`
+  cursor: pointer;
 `;
 
