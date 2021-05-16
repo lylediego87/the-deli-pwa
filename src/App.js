@@ -6,6 +6,8 @@ import { PageTransition } from '@steveeeie/react-page-transition';
 import { GlobalStyles,AppContainer } from './global.styles';
 import Header from './components/header/header';
 import FooterNav from './components/footer-navigation/footer.navigation';
+import NotificationsContainer from './components/notification-container/notication-container.component';
+
 import HomePage from './pages/home/home';
 import Place from './pages/place/place';
 import SignIn from './components/sign-in/sign-in';
@@ -27,7 +29,7 @@ const App = ({checkSession,currentUser, fetchFoodItems}) => {
     <AppContainer>
       <GlobalStyles />
       <Header />
-
+      <NotificationsContainer />
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/place/:place' component={Place} />
@@ -36,7 +38,7 @@ const App = ({checkSession,currentUser, fetchFoodItems}) => {
           <Route exact path='/place/:place/menu/:category' component={MenuContainer} />
           <Route exact path='/sign-in' render={() => currentUser ? <Redirect to='/'/> : <SignIn/> } />
         </Switch>
-      
+  
       <FooterNav />
     </AppContainer>
   );

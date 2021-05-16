@@ -5,13 +5,15 @@ import userReducer from './user/user.reducer';
 import itemReducer from './item/item.reducer';
 import cartReducer from './cart/cart.reducer';
 import orderReducer from './order/order.reducer';
+import notificationReducer from './notification/notification.reducer';
 
 const rootReducer = history => combineReducers({
   router: connectRouter(history),
   user: userReducer,
   item: itemReducer,
   cart: cartReducer,
-  order: orderReducer
+  order: orderReducer,
+  notification: notificationReducer
 });
 
 export default rootReducer;
