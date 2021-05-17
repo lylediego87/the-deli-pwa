@@ -3,23 +3,14 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import { Container,ImageDiv, StyledMdAccountCircle } from './user-dipslay.styles';
-import { signOutStart } from '../../redux/user/user.actions';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { toggleHeaderMenu } from '../../redux/app/app.actions';
 
-const UserDisplay = ({user, signOut,history}) => {
-
-  const handleClick = () => {
-    user === null ? history.push('/sign-in') : pushToHomeThenSignOut()
-  }
-
-  const pushToHomeThenSignOut = () => {
-    history.push('/');
-    signOut();
-  }
+const UserDisplay = ({user, toggleHeaderMenu,history}) => {
 
   return(
     <Container> 
-      <ImageDiv onClick={handleClick}>      
+      <ImageDiv onClick={() => toggleHeaderMenu()}>      
         { user ? <img src={user.photoUrl} alt='user'/>  : <StyledMdAccountCircle size={55} /> }
       </ImageDiv>
     </Container>
@@ -27,7 +18,7 @@ const UserDisplay = ({user, signOut,history}) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  signOut: () => dispatch(signOutStart())
+  toggleHeaderMenu: () => dispatch(toggleHeaderMenu())
 });
 
 const mapStateToProps = state => ({

@@ -14,4 +14,13 @@ export const GoogleButton = styled.button`
   color: #fff;
   font-size: 1rem;
   border:none;
+  margin-bottom: 40px;
+`;
+
+export const FacebookButton = styled.button`
+  padding: 10px;
+  background-color: #4285f4;
+  color: #fff;
+  font-size: 1rem;
+  border:none;
 `;

@@ -13,9 +13,16 @@ export function* displayAuthOutNote(){
   yield put(pushNotification({title: `Signed Out`, message: "", id: uniqid(), level: "error"}));
 }
 
+export function* displaySignInFailNote(){
+  yield put(pushNotification({title: `Sign In Failed`, message: "", id: uniqid(), level: "error"}));
+}
 
 export function* displayPlacedOrderNote() {
   yield put(pushNotification({title: `Thank You`, message: "We will notify you via sms", id: uniqid()}));
+}
+
+export function* onSignInFailure() {
+  yield takeLatest(userActionTypes.SIGN_IN_FAILURE, displaySignInFailNote);
 }
 
 export function* onSignInSuccess() {
@@ -34,6 +41,7 @@ export function* notificationSagas() {
   yield all([
     call(onSignInSuccess),
     call(onPlaceOrderSuccess),
-    call(onSignOutSuccess)
+    call(onSignOutSuccess),
+    call(onSignInFailure)
   ])
 } 

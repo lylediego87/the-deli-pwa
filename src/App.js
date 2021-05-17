@@ -30,6 +30,7 @@ const App = ({checkSession,currentUser, fetchFoodItems}) => {
       <GlobalStyles />
       <Header />
       <NotificationsContainer />
+      <PageTransition preset="fadeFromBottom" transitionKey={useLocation().pathname}> 
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/place/:place' component={Place} />
@@ -38,7 +39,7 @@ const App = ({checkSession,currentUser, fetchFoodItems}) => {
           <Route exact path='/place/:place/menu/:category' component={MenuContainer} />
           <Route exact path='/sign-in' render={() => currentUser ? <Redirect to='/'/> : <SignIn/> } />
         </Switch>
-  
+      </PageTransition>
       <FooterNav />
     </AppContainer>
   );
