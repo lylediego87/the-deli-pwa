@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { PageTransition } from '@steveeeie/react-page-transition';
 import { AnimatePresence } from "framer-motion";
 
 import { GlobalStyles,AppContainer } from './global.styles';
