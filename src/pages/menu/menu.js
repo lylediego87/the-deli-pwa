@@ -14,7 +14,7 @@ const Menu = ({match, foodItems}) => {
   return(
     <>
       <Breadcrumbs place={place} category={category}/>
-      <Container>
+      <Container exit={{ opacity: 0 }}>
         { 
           items.map(item =>
           <MenuItem item={item} key={item.id} />

@@ -6,7 +6,7 @@ import CategoryItem from '../../components/category/category';
 const Deli = () => {
   const place = 'deli';
   return(
-    <Container>
+    <Container exit={{ opacity: 0 }}>
       <CategoryItem place={place} category='burger' text="Burgers" />
       <CategoryItem place={place} category='salad' text="Salads" />    
       <CategoryItem place={place} category='pizza' text="Pizza" />

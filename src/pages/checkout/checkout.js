@@ -33,7 +33,7 @@ const Checkout = ({cartItems,totalCost,totalItems, user, placeOrder}) => {
   }
 
   return(
-    <Container>
+    <Container exit={{ opacity: 0 }}>
     {totalItems > 0 ? 
       <form onSubmit={handleSubmit(onSubmit)}>
         <h3>Checkout</h3>

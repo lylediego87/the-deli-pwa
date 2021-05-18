@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TiDelete } from 'react-icons/ti';
+import { motion } from 'framer-motion';
 
 export const Container = styled.div`
   display: flex;
@@ -16,6 +16,8 @@ export const Total = styled.strong`
   flex-grow: 1;
 `;
 
-export const TiDeleteStyled = styled(TiDelete)`
-  cursor: pointer;
+export const MotionButton = styled(motion.button)`
+  border: 0;
+  outline: none;
+  background-color: #dfe4ea;
 `;

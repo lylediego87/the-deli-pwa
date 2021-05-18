@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { PageTransition } from '@steveeeie/react-page-transition';
+import { AnimatePresence } from "framer-motion";
 
 import { GlobalStyles,AppContainer } from './global.styles';
 import Header from './components/header/header';
@@ -19,7 +20,7 @@ import { selectCurrentUser } from './redux/user/user.selectors';
 import { fetchFoodItemsStart } from './redux/item/item.actions';
 
 const App = ({checkSession,currentUser, fetchFoodItems}) => {
-
+  const location = useLocation();
   useEffect(() => {
     checkSession();
     fetchFoodItems();
@@ -30,8 +31,8 @@ const App = ({checkSession,currentUser, fetchFoodItems}) => {
       <GlobalStyles />
       <Header />
       <NotificationsContainer />
-      <PageTransition preset="fadeFromBottom" transitionKey={useLocation().pathname}> 
-        <Switch>
+      <AnimatePresence exitBeforeEnter>
+        <Switch location={location} key={location.pathname}>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/place/:place' component={Place} />
           <Route exact path='/cart' component={Cart} />
@@ -39,7 +40,7 @@ const App = ({checkSession,currentUser, fetchFoodItems}) => {
           <Route exact path='/place/:place/menu/:category' component={MenuContainer} />
           <Route exact path='/sign-in' render={() => currentUser ? <Redirect to='/'/> : <SignIn/> } />
         </Switch>
-      </PageTransition>
+      </AnimatePresence>
       <FooterNav />
     </AppContainer>
   );

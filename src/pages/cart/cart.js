@@ -6,10 +6,10 @@ import { Container, Total} from './cart.styles';
 import CartItem from '../../components/cart-item/cart-item';
 
 const Cart = ({cartItems, cartTotal, removeItem}) => (
-  <Container>
+  <Container exit={{ opacity: 0 }}>
   {cartItems.length > 0 ? <h3> Your Order </h3> : <h3>Your order is empty</h3>}
     { 
-     cartItems.map(item => 
+    cartItems.map(item => 
         <CartItem item={item} key={item.id} />
       )
     }

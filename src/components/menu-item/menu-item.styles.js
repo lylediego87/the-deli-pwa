@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FaPlus } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 export const Container = styled.div`
   display: flex;
@@ -25,7 +25,9 @@ export const TopDivText = styled.div`
   font-size: 1.3rem;
 `;
 
-export const FaPlusStyled = styled(FaPlus)`
-  cursor: pointer;
+export const MotionButton = styled(motion.button)`
+  color: #fff;
+  background-color: #00280b;
+  border: 0;
+  outline: none;
 `;
-

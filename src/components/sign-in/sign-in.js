@@ -8,7 +8,7 @@ const SignIn = ({ signInWithGoogle, signInWithFacebook }) => {
   
 
   return(
-    <Container>
+    <Container exit={{ opacity: 0 }}>
       <GoogleButton onClick={signInWithGoogle}>Sign In With Google</GoogleButton>
       <FacebookButton onClick={signInWithFacebook} >Sign In With Facebook</FacebookButton>
     </Container>

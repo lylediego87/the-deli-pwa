@@ -6,7 +6,7 @@ import GreensImgUrl from '../../images/The-Greens-Logo-480x341.png';
 import DeliImgUrl from '../../images/TheDeli-black-600x200px.png';
 
 const HomePage = () => (
-  <Container>
+  <Container exit={{ opacity: 0 }}>
     <Link to="/place/deli">
       <ImageDiv style={{ backgroundImage: `url(${DeliImgUrl})`}}/>
     </Link>
