@@ -1,7 +1,8 @@
 import userActionTypes from './user.types';
 
 const INITIAL_STATE = {
-  currentUser: null
+  currentUser: null,
+  userOrders: []
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -16,7 +17,8 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         error: null,
-        currentUser: null
+        currentUser: null,
+        userOrders: []
       } 
     case userActionTypes.SIGN_IN_SUCCESS:
       return {
@@ -28,6 +30,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         currentUser: action.payload
+      }
+    case userActionTypes.GET_USER_ORDERS_SUCCESS:
+      return {
+        ...state,
+        userOrders: action.payload
       }
     default:
       return state;

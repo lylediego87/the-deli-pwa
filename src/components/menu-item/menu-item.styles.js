@@ -6,11 +6,13 @@ export const Container = styled.div`
   flex-direction: column;
   border: 1px solid #00280b;
   width: 100%;
+  margin-bottom: 20px;
 `;
 
 export const TopDiv  = styled.div`
   display: flex;
   background-color: #00280b;
+  align-items: center;
 `;
 
 export const BottomDiv = styled.div`
@@ -22,7 +24,7 @@ export const TopDivText = styled.div`
   padding: 3px 10px;
   flex-grow: 2;
   color: #fff;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 `;
 
 export const MotionButton = styled(motion.button)`

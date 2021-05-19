@@ -7,8 +7,10 @@ import { removeItemFromCart } from '../../redux/cart/cart.actions';
 
 const CartItem = ({item,removeItem}) => (
   <Container>
-    <Name>{item.name} x {item.quantity}</Name>
-    <Total>{item.quantity * item.price}</Total>
+    <div style={{display: 'flex', flexDirection: 'column', flexGrow: 1}}>
+      <Name>{item.name} x {item.quantity}</Name>
+      <Total>{item.quantity * item.price} </Total>
+    </div>
     <MotionButton onClick={ () => removeItem(item)} whileTap={{ scale: 1.2, color: "#00a8ff" }}>
       <TiDelete size={30} />
     </MotionButton>

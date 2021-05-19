@@ -1,8 +1,11 @@
-import { takeLatest, put, all, call } from 'redux-saga/effects';
+import { takeLatest, put, all, call, take } from 'redux-saga/effects';
+import { eventChannel } from 'redux-saga';
+import { push } from "connected-react-router";
 
 import userActionTypes from './user.types';
-import { signInFailure, signInSuccess, signOutFailure, signOutSuccess } from './user.actions';
-import { auth, GoogleSignIn, FacebookSignIn, getCurrentUser } from '../../firebase/firebase.utils';
+import { signInFailure, signInSuccess, signOutFailure, 
+        signOutSuccess, getUserOrdersFailure, getUserOrdersSuccess } from './user.actions';
+import { auth, GoogleSignIn, FacebookSignIn, getCurrentUser, firestore } from '../../firebase/firebase.utils';
 
 export function* signInWithFacebook() {
   try {
@@ -40,9 +43,33 @@ export function* signOut(){
   try {
     yield auth.signOut();
     yield put(signOutSuccess());
+    yield put(push('/'));
   } catch (error) {
     yield put(signOutFailure(error))
   }
+}
+
+export function* getUserOrders(){
+  const user = yield getCurrentUser();
+  if(!user) return;
+  const ref = firestore.collection('orders').where('email', '==', user['email'] ).where('status', '!=', 'closed' );
+  const channel = eventChannel(emit => ref.onSnapshot(emit));
+  try {
+    while(true){
+      const data = yield take(channel);
+      let orders = [];
+      data.forEach((doc) => {
+        orders.push(doc.data());
+      });
+      yield put(getUserOrdersSuccess(orders));
+    }
+  } catch (error) {
+    yield put(getUserOrdersFailure(error));
+  }
+}
+
+export function* onSignInSuccess() {
+  yield takeLatest(userActionTypes.SIGN_IN_SUCCESS, getUserOrders);
 }
 
 export function* onFacebookSignInStart() {
@@ -66,6 +93,7 @@ export function* userSagas() {
     call(onGoogleSignInStart),
     call(onFacebookSignInStart),
     call(onCheckUserSession),
-    call(onSignOutStart)
+    call(onSignOutStart),
+    call(onSignInSuccess)
   ]);
 }

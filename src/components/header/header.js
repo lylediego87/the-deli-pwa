@@ -19,8 +19,8 @@ const Header = ({menuToggle, currentUser, signOut, toggleMenu}) => (
     </HeaderContainer>
     { menuToggle ? 
       <HeaderMenu> 
-        <MenuLink to="#" onClick={() => toggleMenu()}>History</MenuLink>
-        <MenuLink to="#" onClick={() => toggleMenu()}>About</MenuLink>
+        <MenuLink to="/my-orders" onClick={() => toggleMenu()}>My Orders</MenuLink>
+        <MenuLink to="/about" onClick={() => toggleMenu()}>About</MenuLink>
         {currentUser ? 
           <MenuLink to="#" onClick={
             () => {

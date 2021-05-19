@@ -14,6 +14,9 @@ import SignIn from './components/sign-in/sign-in';
 import MenuContainer from './pages/menu/menu.container';
 import Cart from './pages/cart/cart';
 import Checkout from './pages/checkout/checkout';
+import MyOrders from './pages/my-orders/my-orders';
+import About from './pages/about/about';
+
 import { checkUserSession } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
 import { fetchFoodItemsStart } from './redux/item/item.actions';
@@ -38,6 +41,8 @@ const App = ({checkSession,currentUser, fetchFoodItems}) => {
           <Route exact path='/checkout' render={() => currentUser ? <Checkout/> : <SignIn/> }/>
           <Route exact path='/place/:place/menu/:category' component={MenuContainer} />
           <Route exact path='/sign-in' render={() => currentUser ? <Redirect to='/'/> : <SignIn/> } />
+          <Route exact path='/my-orders' component={MyOrders} />
+          <Route exact path='/about' component={About} />
         </Switch>
       </AnimatePresence>
       <FooterNav />

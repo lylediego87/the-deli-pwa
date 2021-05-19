@@ -17,7 +17,7 @@ const MenuItem = (props) => {
       <TopDivText style={{flexGrow: '1'}}>{name} - {price}</TopDivText>
       <TopDivText style={{flexGrow: '0'}}>
         <MotionButton onClick={ () => addToCart() } whileTap={{ scale: 1.2, color: "#00a8ff" }} >
-          <FaPlus size={30} />
+          <FaPlus size={25} />
         </MotionButton>
       </TopDivText>
     </TopDiv>
